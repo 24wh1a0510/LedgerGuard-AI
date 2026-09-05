@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { @apply scroll-smooth; }
+  body {
+    @apply bg-navy text-slate-100 font-body antialiased;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(79,140,255,0.18), transparent),
+      radial-gradient(ellipse 60% 50% at 100% 0%, rgba(0,212,255,0.12), transparent),
+      #0B1020;
+    min-height: 100vh;
+  }
+  h1,h2,h3,h4 { @apply font-display; }
+  ::selection { background: rgba(79,140,255,0.35); }
+  *:focus-visible { outline: 2px solid #4F8CFF; outline-offset: 2px; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(148,163,214,0.25); border-radius: 8px; }
+}
+
+@layer components {
+  .glass {
+    @apply bg-surface/60 backdrop-blur-xl border border-border rounded-2xl;
+  }
+  .glass-card {
+    @apply glass shadow-glass transition-all duration-300;
+  }
+  .glass-card:hover {
+    @apply border-primary/40;
+    transform: translateY(-2px);
+  }
+  .gradient-border {
+    position: relative;
+    border-radius: 1rem;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(79,140,255,0.6), rgba(0,212,255,0.15));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+  .btn-primary {
+    @apply px-4 py-2 rounded-xl bg-grad-primary text-white font-semibold text-sm shadow-glow hover:brightness-110 active:scale-95 transition-all;
+  }
+  .btn-ghost {
+    @apply px-4 py-2 rounded-xl border border-border text-slate-200 text-sm font-medium hover:bg-white/5 active:scale-95 transition-all;
+  }
+}
